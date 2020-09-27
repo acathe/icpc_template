@@ -6,8 +6,7 @@ constexpr size_t kMaxV = 1e5 + 5;
 
 struct Edge { int u, v; };
 
-class Graph {
-  public:
+struct Graph {
     vector<int> adj_[kMaxV];
     vector<Edge> e_;
 
@@ -44,9 +43,8 @@ bool isBG(const Graph& g) {
     memset(vis, 0, sizeof(vis));
     memset(color, 0, sizeof(color));
     for (int i = 0; i < kMaxV; ++i) {
-        if (!vis[i] && g.adj_[i].size() > 0) {
+        if (g.adj_[i].size() > 0 && !vis[i])
             if (!dfs(i, g)) return false;
-        }
     }
     return true;
 }
