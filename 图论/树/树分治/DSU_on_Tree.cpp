@@ -1,6 +1,6 @@
 /**
  * @birth: created by Acathe on 2020-09-28
- * @content: 点分治
+ * @content: DSU on Tree
  * @version 1.0.0
  * @revision: last revised by Acathe on 2020-09-28
  * @template: http://codeforces.com/problemset/problem/600/E
@@ -10,7 +10,7 @@
 
 using namespace std;
 
-const size_t kMaxV = 1e5 + 5;
+constexpr size_t kMaxV = 1e5 + 5;
 
 struct Edge { int u, v; };
 
@@ -47,12 +47,10 @@ struct DsuOnTree : Graph {
         siz[u] = 1;
         for (const auto& i: adj[u]) {
             int v = e[i].v;
-            if(v == par) continue;
+            if (v == par) continue;
             dfsChild(v, u);
             siz[u] += siz[v];
-            if(siz[child[u]] < siz[v]){
-                child[u] = v;
-            }
+            if (siz[child[u]] < siz[v]) child[u] = v;
         }
     }
 
@@ -70,7 +68,7 @@ struct DsuOnTree : Graph {
         modify(w[u], val);
         for (const auto& i: adj[u]) {
             int v = e[i].v;
-            if(v == par) continue;
+            if (v == par) continue;
             update(v, u, val);
         }
     }
@@ -78,14 +76,14 @@ struct DsuOnTree : Graph {
     void dfs(int u, int par) {
         for (const auto& i: adj[u]) {
             int v = e[i].v;
-            if(v == par || v == child[u]) continue;
+            if (v == par || v == child[u]) continue;
             dfs(v, u);
         }
         if (child[u]) dfs(child[u], u);
         modify(w[u], 1);
         for (const auto& i: adj[u]) {
             int v = e[i].v;
-            if(v == par || v == child[u]) continue;
+            if (v == par || v == child[u]) continue;
             update(v, u, 1);
         }
         ans[u] = res;

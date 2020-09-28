@@ -1,6 +1,6 @@
 /**
  * @birth: created by Acathe on 2020-09-28
- * @content: 树的重心
+ * @content: 树的最小点覆盖
  * @version 1.0.0
  * @revision: last revised by Acathe on 2020-09-28
 */
@@ -9,8 +9,7 @@
 
 using namespace std;
 
-const size_t kMaxV = 1e5 + 5;
-const size_t kInf = 0x3f3f3f3f;
+constexpr size_t kMaxV = 1e5 + 5;
 
 struct Edge { int u, v; };
 
@@ -30,9 +29,8 @@ struct Graph {
     }
 };
 
-struct TreeCent : Graph {
-    int n, siz[kMaxV];
-    int cent, dp[kMaxV];
+struct TreeDP : Graph {
+    int dp[kMaxV][2];
 
     void addEdge(int u, int v) {
         Graph::addEdge(u, v);
@@ -40,25 +38,20 @@ struct TreeCent : Graph {
     }
 
     void dfs(int u, int par) {
-        siz[u] = 1;
-        dp[u] = 0;
+        dp[u][0] = 0;
+        dp[u][1] = 1;
         for (const auto& i: adj[u]) {
             int v = e[i].v;
             if (v == par) continue;
             dfs(v, u);
-            siz[u] += siz[v];
-            dp[u] = max(dp[u], siz[v]);
+            dp[u][0] += dp[v][1];
+            dp[u][1] += min(dp[v][0], dp[v][1]);
         }
-        dp[u] = max(dp[u], n - siz[u]);
-        if (dp[u] < dp[cent]) cent = u;
     }
 
-    int solveTreeCent(int n) {
-        this->n = n;
-        cent = 0;
-        dp[0] = kInf;
+    int solveTreeDP() {
         dfs(1, 0);
-        return cent;
+        return min(dp[1][0], dp[1][1]);
     }
 };
 

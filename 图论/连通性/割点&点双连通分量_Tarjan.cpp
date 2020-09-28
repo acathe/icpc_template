@@ -2,14 +2,15 @@
  * @birth: created by Acathe on 2020-09-27
  * @content: 割点和点双连通分量
  * @version 1.0.0
- * @revision: last revised by Acathe on 2020-09-27
+ * @revision: last revised by Acathe on 2020-09-28
+ * @template: https://www.luogu.com.cn/problem/P3388
 */
 
 #include <bits/stdc++.h>
 
 using namespace std;
 
-const size_t kMaxV = 1e5 + 5;
+constexpr size_t kMaxV = 1e5 + 5;
 
 struct Edge { int u, v; };
 
@@ -89,7 +90,28 @@ struct BCC : Graph {
     }
 };
 
-int main() {
+int n, m;
+BCC graph;
 
+int main() {
+#ifndef DEBUG
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+#endif // DEBUG
+    cin >> n >> m;
+    graph.init();
+    while (m--) {
+        int u, v;
+        cin >> u >> v;
+        graph.addEdge(u, v);
+    }
+    graph.solveBCC(n);
+    vector<int> ans;
+    for (int i = 1; i <= n; ++i)
+        if (graph.cut[i]) ans.push_back(i);
+    cout << ans.size() << '\n';
+    for (const auto& i: ans)
+        cout << i << ' ';
+    cout << '\n';
     return 0;
 }

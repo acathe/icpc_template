@@ -9,8 +9,8 @@
 
 using namespace std;
 
-const size_t kMaxV = 1e5 + 5;
-const size_t kMaxE = 2e5 + 5;
+constexpr size_t kMaxV = 1e5 + 5;
+constexpr size_t kMaxE = 2e5 + 5;
 
 struct Edge { int u, v; };
 

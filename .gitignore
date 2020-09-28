@@ -7,5 +7,11 @@
 # 旧模板
 /Old_Template
 
+# Code Runner临时文件
+tempCodeRunnerFile.*
+
+# vscode配置
+/.vscode
+
 # 未完成
-/README.md
+未完成_*
