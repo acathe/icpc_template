@@ -62,8 +62,8 @@ struct SCC : Graph {
         memset(dfn, 0, sizeof(dfn));
         memset(low, 0, sizeof(low));
         memset(scc, 0, sizeof(scc));
-        for(int i = 1; i <= n; ++i)
-            if(!dfn[i]) tarjan(i);
+        for (int i = 1; i <= n; ++i)
+            if (!dfn[i]) tarjan(i);
     }
 };
 

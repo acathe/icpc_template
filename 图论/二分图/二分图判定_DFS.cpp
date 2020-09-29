@@ -9,7 +9,7 @@
 
 using namespace std;
 
-constexpr size_t kMaxV = 1e5 + 5;
+constexprexpr size_t kMaxV = 1e5 + 5;
 
 struct Edge { int u, v; };
 

@@ -9,8 +9,8 @@
 
 using namespace std;
 
-const int kMaxN = 1e5 + 5;
-const int kLogN = 25;
+constexpr size_t kMaxN = 1e5 + 5;
+constexpr size_t kLogN = 25;
 
 struct SegmentTree {
     struct Node { int data; };
@@ -25,31 +25,31 @@ struct SegmentTree {
         memset(root, 0, sizeof(root));
     }
 
-    inline void newNode(int &rt) {
+    void newNode(int &rt) {
         rt = ++cnt;
         node[rt] = node[0];
         lSon[rt] = rSon[rt] = 0;
     }
 
-    inline Node merge(const Node &lSon, const Node &rSon) {
+    Node merge(const Node &lSon, const Node &rSon) {
         Node res;
         res.data = lSon.data + rSon.data;
         return res;
     }
 
-    inline void pushUp(int rt) {
+    void pushUp(int rt) {
         node[rt] = merge(node[lSon[rt]], node[rSon[rt]]);
     }
 
-    void upDate(int k, int v, int l, int r, int &rt) {
+    void update(int k, int v, int l, int r, int &rt) {
         if (!rt) newNode(rt);
         if (l == r) {
             node[rt].data += v;
             return;
         }
         int m = (l + r) >> 1;
-        if (k <= m) upDate(k, v, l, m, lSon[rt]);
-        else upDate(k, v, m + 1, r, rSon[rt]);
+        if (k <= m) update(k, v, l, m, lSon[rt]);
+        else update(k, v, m + 1, r, rSon[rt]);
         pushUp(rt);
     }
 

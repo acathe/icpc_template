@@ -9,8 +9,8 @@
 
 using namespace std;
 
-const int kMaxN = 1e5 + 5;
-const int kLogN = 25;
+constexpr size_t kMaxN = 1e5 + 5;
+constexpr size_t kLogN = 25;
 
 struct PersistTree {
     int root[kMaxN];
@@ -35,7 +35,7 @@ struct PersistTree {
         build(m + 1, r, rSon[rt]);
     }
 
-    void upDate(int k, int v, int l, int r, int pre, int& rt) {
+    void update(int k, int v, int l, int r, int pre, int& rt) {
         rt = ++cnt;
         lSon[rt] = lSon[pre];
         rSon[rt] = rSon[pre];
@@ -44,8 +44,8 @@ struct PersistTree {
             return;
         }
         int m = (l + r) >> 1;
-        if (k <= m) upDate(k, v, l, m, lSon[pre], lSon[rt]);
-        else upDate(k, v, m + 1, r, rSon[pre], rSon[rt]);
+        if (k <= m) update(k, v, l, m, lSon[pre], lSon[rt]);
+        else update(k, v, m + 1, r, rSon[pre], rSon[rt]);
         pushUp(rt);
     }
 

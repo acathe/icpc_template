@@ -2,17 +2,17 @@
  * @birth: created by Acathe on 2020-09-28
  * @content: 离散化
  * @version 1.0.0
- * @revision: last revised by Acathe on 2020-09-28
+ * @revision: last revised by Acathe on 2020-09-29
 */
 
 #include<bits/stdc++.h>
 
 using namespace std;
 
-const int MAXN = 1e5 + 5;
+constexpr size_t kMaxN = (1e5 + 5) * 2;
 
 struct Map {
-    int data[MAXN], cnt;
+    int data[kMaxN], cnt;
 
     void init() { cnt = 0; }
 
