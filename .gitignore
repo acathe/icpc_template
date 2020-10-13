@@ -1,20 +1,8 @@
 # 测试文件
 /test*
 
-# 编译后可执行文件
-*.exe
-
 # 旧模板
 /Old_Template
-
-# 新模板
-# /动态规划
-# /计算几何
-# /数据结构
-# /数学
-# /图论
-# /杂项
-# /字符串
 
 # Code Runner临时文件
 tempCodeRunnerFile.*
@@ -24,3 +12,39 @@ tempCodeRunnerFile.*
 
 # 编辑中
 editing_*
+
+# ---
+# https://github.com/github/gitignore/blob/master/C%2B%2B.gitignore
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
