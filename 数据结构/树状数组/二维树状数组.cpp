@@ -23,7 +23,7 @@ struct BIT2D {
         memset(c, 0, sizeof(c));
     }
 
-    void upDate(int x, int y, int v) {
+    void update(int x, int y, int v) {
         for (int i = x; i <= n; i += lowBit(i)) {
             for (int j = y; j <= m; j += lowBit(j))
                 c[i][j] += v;

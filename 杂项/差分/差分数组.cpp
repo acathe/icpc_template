@@ -20,7 +20,7 @@ struct Diff {
             d[i] = a[i] - a[i - 1];
     }
 
-    void upDate(int l, int r, int v) {
+    void update(int l, int r, int v) {
         d[l] += v;
         d[r + 1] -= v;
     }

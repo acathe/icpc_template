@@ -21,7 +21,7 @@ struct Diff2D {
         memset(d, 0, sizeof(d));
     }
 
-    void upDate(int x1, int y1, int x2, int y2, int v) {
+    void update(int x1, int y1, int x2, int y2, int v) {
         d[x1][y1] += 1;
         d[x2 + 1][y1] -= 1;
         d[x1][y2 + 1] -= 1;

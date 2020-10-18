@@ -25,7 +25,7 @@ struct BIT {
         }
     }
 
-    void upDate(int k, int v) {
+    void update(int k, int v) {
         for (int i = k; i <= n; i += lowBit(i))
             c[i] += v;
     }

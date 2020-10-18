@@ -33,7 +33,7 @@ struct PersistTree {
         build(m + 1, r, node[rt].rSon);
     }
 
-    void upDate(int k, int v, int l, int r, int last, int &rt) {
+    void update(int k, int v, int l, int r, int last, int &rt) {
         rt = ++cnt;
         node[rt] = node[last];
         if (l == r) {
@@ -41,8 +41,8 @@ struct PersistTree {
             return;
         }
         int m = (l + r) >> 1;
-        if (k <= m) upDate(k, v, l, m, node[last].lSon, node[rt].lSon);
-        else upDate(k, v, m + 1, r, node[last].rSon, node[rt].rSon);
+        if (k <= m) update(k, v, l, m, node[last].lSon, node[rt].lSon);
+        else update(k, v, m + 1, r, node[last].rSon, node[rt].rSon);
     }
 
     int query(int k, int l, int r, int rt) {
@@ -64,14 +64,14 @@ struct PersistDSU {
         tree.build(1, n, tree.root[cnt]);
     }
 
-    void upDate(int k, int l, int r, int rt) {
+    void update(int k, int l, int r, int rt) {
         if (l == r) {
             ++tree.node[rt].dep;
             return;
         }
         int m = (l + r) >> 1;
-        if (k <= m) upDate(k, l, m, tree.node[rt].lSon);
-        else upDate(k, m + 1, r, tree.node[rt].rSon);
+        if (k <= m) update(k, l, m, tree.node[rt].lSon);
+        else update(k, m + 1, r, tree.node[rt].rSon);
     }
 
     int find(int x, int tim) {
@@ -84,9 +84,9 @@ struct PersistDSU {
         int xRoot = find(x, tim), yRoot = find(y, tim);
         if (tree.node[xRoot].pre == tree.node[yRoot].pre) return tim;
         if (tree.node[xRoot].dep > tree.node[yRoot].dep) swap(xRoot, yRoot);
-        tree.upDate(tree.node[xRoot].pre, tree.node[yRoot].pre, 1, n, tree.root[tim], tree.root[++cnt]);
+        tree.update(tree.node[xRoot].pre, tree.node[yRoot].pre, 1, n, tree.root[tim], tree.root[++cnt]);
         if (tree.node[xRoot].dep == tree.node[yRoot].dep)
-            upDate(tree.node[yRoot].pre, 1, n, tree.root[cnt]);
+            update(tree.node[yRoot].pre, 1, n, tree.root[cnt]);
         return cnt;
     }
 };

@@ -21,7 +21,7 @@ struct SegmentTree {
 
     int rSon(int rt) { return rt << 1 | 1; }
 
-    void upDate(int v, int l, int r, int rt) {
+    void update(int v, int l, int r, int rt) {
         if (node[rt].maxx <= v) return;
         node[rt].sum += (v - node[rt].maxx) * node[rt].cnt;
         node[rt].maxx = node[rt].lazy = v;
@@ -47,8 +47,8 @@ struct SegmentTree {
     void pushDown(int l, int r, int rt) {
         if (node[rt].lazy == -1) return;
         int m = (l + r) >> 1;
-        upDate(node[rt].lazy, l, m, lSon(rt));
-        upDate(node[rt].lazy, m + 1, r, rSon(rt));
+        update(node[rt].lazy, l, m, lSon(rt));
+        update(node[rt].lazy, m + 1, r, rSon(rt));
         node[rt].lazy = -1;
     }
 
@@ -66,14 +66,14 @@ struct SegmentTree {
         pushUp(rt);
     }
 
-    void upDate(int L, int R, int v, int l, int r, int rt) {
+    void update(int L, int R, int v, int l, int r, int rt) {
         if (node[rt].maxx <= v) return;
         if (L <= l && r <= R && node[rt].sec < v)
-            return upDate(v, l, r, rt);
+            return update(v, l, r, rt);
         pushDown(l, r, rt);
         int m = (l + r) >> 1;
-        if (L <= m) upDate(L, R, v, l, m, lSon(rt));
-        if (m < R) upDate(L, R, v, m + 1, r, rSon(rt));
+        if (L <= m) update(L, R, v, l, m, lSon(rt));
+        if (m < R) update(L, R, v, m + 1, r, rSon(rt));
         pushUp(rt);
     }
 

@@ -22,7 +22,7 @@ struct BIT {
         memset(c, 0, sizeof(c));
     }
 
-    void upDate(int k, int v) {
+    void update(int k, int v) {
         for (int i = k; i <= n; i += lowBit(i))
             c[i] += v;
     }
@@ -61,7 +61,7 @@ void cdq(int l, int r) {
     int p = l, q = mid + 1, cnt = l;
     while (p <= mid && q <= r) {
         if (a[p] < a[q]) {
-            if (a[p].op == 1) tree.upDate(a[p].y, a[p].v);
+            if (a[p].op == 1) tree.update(a[p].y, a[p].v);
             tmp[cnt++] = a[p++];
         } else {
             if (a[q].op == 2) ans[a[q].v] += tree.query(a[q].y);
@@ -70,7 +70,7 @@ void cdq(int l, int r) {
         }
     }
     while (p <= mid) {
-        if (a[p].op == 1) tree.upDate(a[p].y, a[p].v);
+        if (a[p].op == 1) tree.update(a[p].y, a[p].v);
         tmp[cnt++] = a[p++];
     }
     while (q <= r) {
@@ -79,7 +79,7 @@ void cdq(int l, int r) {
         tmp[cnt++] = a[q++];
     }
     for (int i = l; i <= mid; ++i)
-        if (a[i].op == 1) tree.upDate(a[i].y, -a[i].v);
+        if (a[i].op == 1) tree.update(a[i].y, -a[i].v);
     for (int i = l; i <= r; ++i)
         a[i] = tmp[i];
 }

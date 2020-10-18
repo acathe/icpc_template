@@ -23,7 +23,7 @@ struct BIT {
         memset(c, 0, sizeof(c));
     }
 
-    void upDate(int k, int v) {
+    void update(int k, int v) {
         for (int i = k; i <= n; i += lowBit(i))
             c[i] += v;
     }
@@ -62,7 +62,7 @@ void solve(int l, int r, int L, int R) {
         if (a[i].op == 1) {
             if (a[i].v <= mid) {
                 lTmp[p++] = a[i];
-                tree.upDate(a[i].l, a[i].k);
+                tree.update(a[i].l, a[i].k);
             } else {
                 rTmp[q++] = a[i];
             }
@@ -78,7 +78,7 @@ void solve(int l, int r, int L, int R) {
     }
     for (int i = 0; i < p; ++i) {
         a[L + i] = lTmp[i];
-        if (lTmp[i].op == 1) tree.upDate(lTmp[i].l, -lTmp[i].k);
+        if (lTmp[i].op == 1) tree.update(lTmp[i].l, -lTmp[i].k);
     }
     for (int i = 0; i < q; ++i)
         a[L + p + i] = rTmp[i];

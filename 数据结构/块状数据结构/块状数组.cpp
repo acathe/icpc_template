@@ -20,7 +20,7 @@ struct Block {
     Node block[kSqrtN];
     int data[kMaxN];
 
-    void upDate(int v, int x) {
+    void update(int v, int x) {
         block[x].lazy += v;
         block[x].sum += v * (block[x].r - block[x].l + 1);
     }
@@ -61,11 +61,11 @@ struct Block {
         }
     }
 
-    void upDate(int l, int r, int v) {
+    void update(int l, int r, int v) {
         if (bl[l] == bl[r]) return upDateBlock(l, r, v);
         upDateBlock(l, block[bl[l]].r, v);
         for (int i = bl[l] + 1; i <= bl[r] - 1; ++i)
-            upDate(v, i);
+            update(v, i);
         upDateBlock(block[bl[r]].l, r, v);
     }
 

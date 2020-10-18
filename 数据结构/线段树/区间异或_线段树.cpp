@@ -24,7 +24,7 @@ struct BitSegmentTree {
 
     int rSon(int rt) { return rt << 1 | 1; }
 
-    void upDate(bool v, int l, int r, int rt) {
+    void update(bool v, int l, int r, int rt) {
         node[rt].lazy ^= v;
         node[rt].data = v ? (r - l + 1) - node[rt].data : node[rt].data;
     }
@@ -36,8 +36,8 @@ struct BitSegmentTree {
     void pushDown(int l, int r, int rt) {
         if (!node[rt].lazy) return;
         int m = (l + r) >> 1;
-        upDate(node[rt].lazy, l, m, lSon(rt));
-        upDate(node[rt].lazy, m + 1, r, rSon(rt));
+        update(node[rt].lazy, l, m, lSon(rt));
+        update(node[rt].lazy, m + 1, r, rSon(rt));
         node[rt].lazy = 0;
     }
 
@@ -53,12 +53,12 @@ struct BitSegmentTree {
         pushUp(rt);
     }
 
-    void upDate(int L, int R, int v, int l, int r, int rt) {
-        if (L <= l && r <= R) return upDate(v, l, r, rt);
+    void update(int L, int R, int v, int l, int r, int rt) {
+        if (L <= l && r <= R) return update(v, l, r, rt);
         pushDown(l, r, rt);
         int m = (l + r) >> 1;
-        if (L <= m) upDate(L, R, v, l, m, lSon(rt));
-        if (m < R) upDate(L, R, v, m + 1, r, rSon(rt));
+        if (L <= m) update(L, R, v, l, m, lSon(rt));
+        if (m < R) update(L, R, v, m + 1, r, rSon(rt));
         pushUp(rt);
     }
 
@@ -81,9 +81,9 @@ struct SegmentTree {
             tree[i].build(a, i, l, r, rt);
     }
 
-    void upDate(int L, int R, int v, int l, int r, int rt) {
+    void update(int L, int R, int v, int l, int r, int rt) {
         for (int i = 0; i < kLogN; ++i)
-            tree[i].upDate(L, R, (v >> i) & 1, l, r, rt);
+            tree[i].update(L, R, (v >> i) & 1, l, r, rt);
     }
 
     int query(int L, int R, int l, int r, int rt) {

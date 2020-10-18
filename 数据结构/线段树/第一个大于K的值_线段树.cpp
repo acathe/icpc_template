@@ -29,11 +29,11 @@ struct SegmentTree {
         build(m + 1, r, rSon(rt));
     }
 
-    void upDate(int k, int v, int l, int r, int rt) {
+    void update(int k, int v, int l, int r, int rt) {
         if (l == r) { maxx[rt] = v; return; }
         int m = (l + r) >> 1;
-        if (k <= m) upDate(k, v, l, m, lSon(rt));
-        else upDate(k, v, m + 1, r, rSon(rt));
+        if (k <= m) update(k, v, l, m, lSon(rt));
+        else update(k, v, m + 1, r, rSon(rt));
         pushUp(rt);
     }
 
