@@ -28,7 +28,7 @@
 
 同样也感谢我的教练靳老师，感谢他给予我外出参与比赛的机会，也感谢他带领ACM队，让我在这里遇到一群同样热爱ACM的人，更感谢让我在这里遇见我的两位队友，让他们和我一起跨过比赛中的一个又一个难题。
 
-最后，让我再次感谢我的队友[@二牛](https://github.com/yinzi98)，[@何世全](https://me.csdn.net/HTallperson)。感谢你们和我一起走的这些比赛时光。
+最后，让我再次感谢我的队友[@二牛](https://github.com/yinzi98)，[@Allen-HSQ](https://github.com/Allen-HSQ)。感谢你们和我一起走的这些比赛时光。
 
 —— Acathe
 
