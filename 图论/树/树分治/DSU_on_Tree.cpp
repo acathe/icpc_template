@@ -11,6 +11,7 @@
 using namespace std;
 
 constexpr size_t kMaxV = 1e5 + 5;
+constexpr size_t kMaxW = 1e6 + 5;
 
 struct Edge { int u, v; };
 
@@ -34,7 +35,7 @@ struct Graph {
 
 struct DsuOnTree : Graph {
     int siz[kMaxV], child[kMaxV];
-    int buc[kMaxV], maxx;
+    int buc[kMaxW], maxx;
     int64_t ans[kMaxV], res;
 
     void addEdge(int u, int v) {
